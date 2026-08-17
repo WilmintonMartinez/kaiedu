@@ -1,6 +1,21 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* KaiEdu — breakpoints de referencia (mobile-first) */
+  --kai-bp-sm: 480px;
+  --kai-bp-md: 768px;
+  --kai-bp-lg: 1024px;
+  --kai-bp-xl: 1280px;
+
+  /* Contenedores */
+  --kai-content-narrow: 720px;
+  --kai-content-wide: 1200px;
+
+  /* Espaciado seguro en móviles con notch */
+  --kai-safe-left: env(safe-area-inset-left, 0px);
+  --kai-safe-right: env(safe-area-inset-right, 0px);
+  --kai-safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,6 +27,8 @@
 
 html {
   height: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 html,
@@ -22,11 +39,14 @@ body {
 
 body {
   min-height: 100%;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: clamp(0.9375rem, 0.875rem + 0.25vw, 1rem);
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -37,13 +57,44 @@ body {
   margin: 0;
 }
 
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
+/* Área táctil mínima recomendada (~44px) para botones/enlaces interactivos */
+button,
+input,
+select,
+textarea,
+[role="button"] {
+  font: inherit;
+  touch-action: manipulation;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

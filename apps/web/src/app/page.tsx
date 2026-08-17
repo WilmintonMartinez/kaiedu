@@ -8,13 +8,15 @@ export default function Home() {
       </header>
 
       <main className={styles.main}>
-        <p className={styles.badge}>Plataforma en desarrollo</p>
-        <h1>Gestión escolar inteligente</h1>
-        <p className={styles.lead}>
-          Matrícula, asistencia, calificaciones, comunicación con familias y
-          administración en un solo lugar. Pensado para colegios que quieren
-          dejar el papel y el Excel atrás.
-        </p>
+        <div className={styles.hero}>
+          <p className={styles.badge}>Plataforma en desarrollo</p>
+          <h1>Gestión escolar inteligente</h1>
+          <p className={styles.lead}>
+            Matrícula, asistencia, calificaciones, comunicación con familias y
+            administración en un solo lugar. Pensado para colegios que quieren
+            dejar el papel y el Excel atrás.
+          </p>
+        </div>
 
         <section className={styles.features} aria-label="Módulos principales">
           <div className={styles.feature}>

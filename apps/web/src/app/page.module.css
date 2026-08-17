@@ -8,6 +8,7 @@
 
   display: flex;
   min-height: 100vh;
+  min-height: 100dvh;
   flex-direction: column;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   background: linear-gradient(180deg, var(--kai-primary-soft) 0%, #f8fafc 40%);
@@ -15,11 +16,15 @@
 }
 
 .header {
-  padding: 1.5rem 2rem;
+  width: 100%;
+  max-width: var(--kai-content-wide);
+  margin: 0 auto;
+  padding: max(1rem, env(safe-area-inset-top, 0px)) max(1.25rem, var(--kai-safe-right))
+    1rem max(1.25rem, var(--kai-safe-left));
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--kai-primary);
@@ -30,15 +35,22 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 2rem;
   width: 100%;
+  max-width: var(--kai-content-wide);
+  margin: 0 auto;
+  padding: 1.5rem max(1.25rem, var(--kai-safe-right)) 2rem
+    max(1.25rem, var(--kai-safe-left));
+}
+
+.hero {
+  width: 100%;
+  max-width: var(--kai-content-narrow);
 }
 
 .badge {
   display: inline-block;
   width: fit-content;
+  max-width: 100%;
   margin-bottom: 1rem;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
@@ -49,24 +61,28 @@
   border: 1px solid var(--kai-border);
 }
 
-.main h1 {
-  font-size: clamp(2rem, 5vw, 2.75rem);
+.hero h1 {
+  font-size: clamp(1.75rem, 1.2rem + 2.5vw, 2.75rem);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.03em;
   margin-bottom: 1rem;
+  text-wrap: balance;
 }
 
 .lead {
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 0.95rem + 0.35vw, 1.125rem);
   line-height: 1.65;
   color: var(--kai-muted);
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
+  text-wrap: pretty;
 }
 
 .features {
   display: grid;
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  gap: 0.875rem;
+  width: 100%;
 }
 
 .feature {
@@ -86,24 +102,72 @@
 
 .feature span {
   font-size: 0.875rem;
+  line-height: 1.5;
   color: var(--kai-muted);
 }
 
 .footer {
-  padding: 1.5rem 2rem;
+  width: 100%;
+  max-width: var(--kai-content-wide);
+  margin: 0 auto;
+  padding: 1.25rem max(1.25rem, var(--kai-safe-right))
+    max(1.25rem, calc(1rem + var(--kai-safe-bottom))) max(1.25rem, var(--kai-safe-left));
   text-align: center;
   font-size: 0.8125rem;
+  line-height: 1.5;
   color: var(--kai-muted);
   border-top: 1px solid var(--kai-border);
   background: var(--kai-surface);
 }
 
-@media (max-width: 600px) {
-  .header,
-  .main,
-  .footer {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+.footer p {
+  text-wrap: balance;
+}
+
+/* Tablet: 2 columnas en módulos */
+@media (min-width: 480px) {
+  .features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .feature:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Tablet grande / laptop */
+@media (min-width: 768px) {
+  .header {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: max(2rem, var(--kai-safe-left));
+    padding-right: max(2rem, var(--kai-safe-right));
+  }
+
+  .main {
+    padding: 2.5rem max(2rem, var(--kai-safe-right)) 3rem
+      max(2rem, var(--kai-safe-left));
+  }
+
+  .features {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .feature:last-child {
+    grid-column: auto;
+  }
+
+  .lead {
+    margin-bottom: 2.5rem;
+  }
+}
+
+/* Escritorio ancho: más aire lateral */
+@media (min-width: 1024px) {
+  .main {
+    padding-top: 3rem;
+    padding-bottom: 4rem;
   }
 }
 
