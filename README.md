@@ -1,6 +1,6 @@
-# Sistema escolar
+# KaiEdu
 
-Monorepo del sistema escolar.
+Plataforma de gestión escolar. Matrícula, asistencia, calificaciones, comunicación con familias y administración institucional.
 
 ## Estructura
 
@@ -18,4 +18,9 @@ Abrir http://localhost:3000
 
 ## Vercel
 
-Root Directory del proyecto: `apps/web`
+- **Nombre sugerido del proyecto:** `kaiedu`
+- **Root Directory:** `apps/web`
+
+## GitHub
+
+- **Nombre sugerido del repo:** `kaiedu` o `kaiedu-sis`
