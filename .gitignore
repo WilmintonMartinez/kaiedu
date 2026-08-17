@@ -1,0 +1,17 @@
+# Dependencias y builds
+**/node_modules
+**/.next
+**/out
+**/build
+
+# Entorno local
+**/.env*
+!.env.example
+
+# Vercel
+**/.vercel
+
+# Logs y sistema
+*.log
+.DS_Store
+Thumbs.db
