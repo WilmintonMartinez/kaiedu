@@ -1,17 +1,10 @@
 .page {
-  --kai-primary: #1a4d8c;
-  --kai-primary-soft: #e8f0fa;
-  --kai-text: #0f172a;
-  --kai-muted: #475569;
-  --kai-border: #cbd5e1;
-  --kai-surface: #ffffff;
-
   display: flex;
   min-height: 100vh;
   min-height: 100dvh;
   flex-direction: column;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  background: linear-gradient(180deg, var(--kai-primary-soft) 0%, #f8fafc 40%);
+  background: linear-gradient(180deg, var(--kai-primary-soft) 0%, var(--background) 45%);
   color: var(--kai-text);
 }
 
@@ -27,6 +20,13 @@
     1rem max(1.25rem, var(--kai-safe-left));
 }
 
+.logo {
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--kai-primary);
+}
+
 .loginLink {
   min-height: 44px;
   display: inline-flex;
@@ -40,11 +40,8 @@
   text-decoration: none;
 }
 
-.logo {
-  font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--kai-primary);
+.loginLink:hover {
+  background: var(--kai-primary-hover);
 }
 
 .main {
@@ -107,9 +104,10 @@
   flex-direction: column;
   gap: 0.25rem;
   padding: 1rem 1.25rem;
-  border-radius: 12px;
+  border-radius: var(--kai-radius);
   background: var(--kai-surface);
   border: 1px solid var(--kai-border);
+  box-shadow: var(--kai-shadow-sm);
 }
 
 .feature strong {
@@ -141,7 +139,6 @@
   text-wrap: balance;
 }
 
-/* Tablet: 2 columnas en módulos */
 @media (min-width: 480px) {
   .features {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -152,7 +149,6 @@
   }
 }
 
-/* Tablet grande / laptop */
 @media (min-width: 768px) {
   .header {
     padding-top: 1.5rem;
@@ -180,26 +176,9 @@
   }
 }
 
-/* Escritorio ancho: más aire lateral */
 @media (min-width: 1024px) {
   .main {
     padding-top: 3rem;
     padding-bottom: 4rem;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .page {
-    --kai-primary: #6ba3e8;
-    --kai-primary-soft: #0f1a2e;
-    --kai-text: #f1f5f9;
-    --kai-muted: #94a3b8;
-    --kai-border: #334155;
-    --kai-surface: #1e293b;
-    background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%);
-  }
-
-  .loginLink {
-    color: #0f172a;
   }
 }

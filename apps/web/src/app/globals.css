@@ -1,28 +1,36 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 
-  /* KaiEdu — breakpoints de referencia (mobile-first) */
+  --background: #f4f7fb;
+  --foreground: #0f172a;
+
+  /* KaiEdu — tema claro institucional */
+  --kai-primary: #1a4d8c;
+  --kai-primary-hover: #153d6f;
+  --kai-primary-soft: #e8f0fa;
+  --kai-text: #0f172a;
+  --kai-muted: #64748b;
+  --kai-border: #dbe3ef;
+  --kai-surface: #ffffff;
+  --kai-surface-muted: #f8fafc;
+  --kai-danger: #b91c1c;
+  --kai-success: #15803d;
+  --kai-warning: #b45309;
+
   --kai-bp-sm: 480px;
   --kai-bp-md: 768px;
   --kai-bp-lg: 1024px;
   --kai-bp-xl: 1280px;
 
-  /* Contenedores */
   --kai-content-narrow: 720px;
   --kai-content-wide: 1200px;
 
-  /* Espaciado seguro en móviles con notch */
   --kai-safe-left: env(safe-area-inset-left, 0px);
   --kai-safe-right: env(safe-area-inset-right, 0px);
   --kai-safe-bottom: env(safe-area-inset-bottom, 0px);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --kai-shadow-sm: 0 1px 2px rgb(15 23 42 / 6%);
+  --kai-radius: 12px;
 }
 
 html {
@@ -72,7 +80,6 @@ a {
   text-decoration: none;
 }
 
-/* Área táctil mínima recomendada (~44px) para botones/enlaces interactivos */
 button,
 input,
 select,
@@ -80,12 +87,6 @@ textarea,
 [role="button"] {
   font: inherit;
   touch-action: manipulation;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,18 +1,10 @@
 .page {
-  --kai-primary: #1a4d8c;
-  --kai-primary-soft: #e8f0fa;
-  --kai-text: #0f172a;
-  --kai-muted: #475569;
-  --kai-border: #cbd5e1;
-  --kai-surface: #ffffff;
-  --kai-danger: #b91c1c;
-
   display: flex;
   min-height: 100vh;
   min-height: 100dvh;
   flex-direction: column;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  background: linear-gradient(180deg, var(--kai-primary-soft) 0%, #f8fafc 40%);
+  background: linear-gradient(180deg, var(--kai-primary-soft) 0%, var(--background) 50%);
   color: var(--kai-text);
 }
 
@@ -45,9 +37,10 @@
   width: 100%;
   max-width: 420px;
   padding: 1.75rem;
-  border-radius: 16px;
+  border-radius: var(--kai-radius);
   background: var(--kai-surface);
   border: 1px solid var(--kai-border);
+  box-shadow: var(--kai-shadow-sm);
 }
 
 .card h1 {
@@ -111,6 +104,10 @@
   cursor: pointer;
 }
 
+.submit:hover:not(:disabled) {
+  background: var(--kai-primary-hover);
+}
+
 .submit:disabled {
   opacity: 0.65;
   cursor: not-allowed;
@@ -122,8 +119,8 @@
   font-size: 0.875rem;
   line-height: 1.45;
   color: var(--kai-danger);
-  background: color-mix(in srgb, var(--kai-danger) 8%, transparent);
-  border: 1px solid color-mix(in srgb, var(--kai-danger) 25%, transparent);
+  background: #fef2f2;
+  border: 1px solid #fecaca;
 }
 
 .back {
@@ -133,21 +130,4 @@
   color: var(--kai-primary);
   text-decoration: underline;
   text-underline-offset: 3px;
-}
-
-@media (prefers-color-scheme: dark) {
-  .page {
-    --kai-primary: #6ba3e8;
-    --kai-primary-soft: #0f1a2e;
-    --kai-text: #f1f5f9;
-    --kai-muted: #94a3b8;
-    --kai-border: #334155;
-    --kai-surface: #1e293b;
-    --kai-danger: #f87171;
-    background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%);
-  }
-
-  .submit {
-    color: #0f172a;
-  }
 }

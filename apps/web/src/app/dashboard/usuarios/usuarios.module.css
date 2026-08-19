@@ -1,0 +1,131 @@
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.table th,
+.table td {
+  padding: 0.875rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--kai-border);
+  vertical-align: middle;
+}
+
+.table th {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--kai-muted);
+  background: var(--kai-surface-muted);
+}
+
+.table tbody tr:hover {
+  background: #fafcff;
+}
+
+.roleSelect {
+  min-height: 40px;
+  min-width: 140px;
+  padding: 0.375rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--kai-border);
+  background: var(--kai-surface);
+}
+
+.statusActive {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--kai-success);
+  background: #ecfdf3;
+}
+
+.statusInactive {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--kai-danger);
+  background: #fef2f2;
+}
+
+.toggleButton {
+  min-height: 40px;
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--kai-border);
+  background: var(--kai-surface);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.formGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.625rem 0.875rem;
+  border-radius: 10px;
+  border: 1px solid var(--kai-border);
+  background: var(--kai-surface);
+  color: var(--kai-text);
+}
+
+.error {
+  padding: 0.75rem 0.875rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  color: var(--kai-danger);
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.success {
+  padding: 0.75rem 0.875rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  color: var(--kai-success);
+  background: #ecfdf3;
+  border: 1px solid #bbf7d0;
+}
+
+.empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--kai-muted);
+}
+
+@media (min-width: 768px) {
+  .formGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .formGrid .fullWidth {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
+import { requireAuthProfile } from "@/lib/auth/profile";
+import { USER_ROLE_LABELS } from "@/lib/types/profile";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
-import { LogoutButton } from "./logout-button";
-import styles from "./dashboard.module.css";
+import shell from "./shell.module.css";
 
 export const metadata: Metadata = {
   title: "Panel — KaiEdu",
@@ -13,34 +12,35 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/login");
-  }
+  const profile = await requireAuthProfile();
+  const isAdmin = profile.role === "administrador";
 
   return (
-    <div className={styles.page}>
-      <header className={styles.header}>
-        <Link className={styles.logo} href="/">
-          KaiEdu
-        </Link>
-        <LogoutButton />
-      </header>
-
-      <main className={styles.main}>
-        <section className={styles.card}>
-          <h1>Bienvenido a KaiEdu</h1>
-          <p className={styles.email}>{user.email}</p>
-          <p className={styles.note}>
-            Has iniciado sesión correctamente. Aquí irá el panel del colegio:
-            matrícula, asistencia, calificaciones y más.
+    <>
+      <div className={shell.pageHeader}>
+        <div>
+          <h1>Bienvenido, {profile.full_name}</h1>
+          <p>
+            Rol: {USER_ROLE_LABELS[profile.role]} · {profile.email}
           </p>
-        </section>
-      </main>
-    </div>
+        </div>
+      </div>
+
+      <section className={shell.card}>
+        <p style={{ color: "var(--kai-muted)", lineHeight: 1.6 }}>
+          Has iniciado sesión en KaiEdu. Desde aquí podrás acceder a matrícula,
+          asistencia, calificaciones y más módulos conforme los vayamos
+          activando.
+        </p>
+
+        {isAdmin ? (
+          <p style={{ marginTop: "1rem" }}>
+            <Link className={shell.primaryButton} href="/dashboard/usuarios">
+              Gestionar usuarios
+            </Link>
+          </p>
+        ) : null}
+      </section>
+    </>
   );
 }
