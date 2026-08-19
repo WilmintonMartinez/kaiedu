@@ -1,45 +1,15 @@
 "use client";
 
-import { createClient } from "@/lib/supabase/client";
+import { login, type LoginState } from "@/app/auth/actions";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useActionState } from "react";
 import styles from "./login.module.css";
 
 export function LoginForm() {
-  const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setError(null);
-    setLoading(true);
-
-    try {
-      const supabase = createClient();
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        email: email.trim(),
-        password,
-      });
-
-      if (signInError) {
-        setError("Correo o contraseña incorrectos. Verifica tus datos.");
-        return;
-      }
-
-      router.push("/dashboard");
-      router.refresh();
-    } catch {
-      setError(
-        "No se pudo conectar con el servidor. Revisa la configuración de Supabase.",
-      );
-    } finally {
-      setLoading(false);
-    }
-  }
+  const [state, formAction, pending] = useActionState<LoginState | null, FormData>(
+    login,
+    null,
+  );
 
   return (
     <div className={styles.card}>
@@ -48,7 +18,7 @@ export function LoginForm() {
         Accede a KaiEdu con tu cuenta institucional.
       </p>
 
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form} action={formAction}>
         <div className={styles.field}>
           <label htmlFor="email">Correo electrónico</label>
           <input
@@ -57,8 +27,6 @@ export function LoginForm() {
             type="email"
             autoComplete="email"
             required
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
             placeholder="tu@colegio.edu"
           />
         </div>
@@ -71,20 +39,18 @@ export function LoginForm() {
             type="password"
             autoComplete="current-password"
             required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
             placeholder="••••••••"
           />
         </div>
 
-        {error ? (
+        {state?.error ? (
           <p className={styles.error} role="alert">
-            {error}
+            {state.error}
           </p>
         ) : null}
 
-        <button className={styles.submit} type="submit" disabled={loading}>
-          {loading ? "Entrando…" : "Entrar"}
+        <button className={styles.submit} type="submit" disabled={pending}>
+          {pending ? "Entrando…" : "Entrar"}
         </button>
       </form>
 
