@@ -42,7 +42,7 @@
   --kai-radius: var(--app-radius-lg);
 
   --kai-content-narrow: 720px;
-  --kai-content-wide: 1280px;
+  --kai-content-wide: 1440px;
   --kai-safe-left: env(safe-area-inset-left, 0px);
   --kai-safe-right: env(safe-area-inset-right, 0px);
   --kai-safe-bottom: env(safe-area-inset-bottom, 0px);

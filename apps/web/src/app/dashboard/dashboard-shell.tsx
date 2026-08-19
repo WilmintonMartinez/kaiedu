@@ -20,18 +20,16 @@ type DashboardShellProps = {
 
 export function DashboardShell({ profile, isAdmin, children }: DashboardShellProps) {
   const pathname = usePathname();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (window.innerWidth >= 992 && localStorage.getItem("kaiedu-sidebar-collapsed") === "1") {
+    if (localStorage.getItem("kaiedu-sidebar-collapsed") === "1") {
       setCollapsed(true);
     }
   }, []);
 
   useEffect(() => {
-    setSidebarOpen(false);
     setMenuOpen(false);
   }, [pathname]);
 
@@ -56,14 +54,8 @@ export function DashboardShell({ profile, isAdmin, children }: DashboardShellPro
   return (
     <div className={`${styles.wrapper} ${collapsed ? styles.wrapperCollapsed : ""}`}>
       <ThemeSync serverTheme={userTheme} />
-      <button
-        type="button"
-        className={`${styles.overlay} ${sidebarOpen ? styles.overlayShow : ""}`}
-        aria-label="Cerrar menú"
-        onClick={() => setSidebarOpen(false)}
-      />
 
-      <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ""}`}>
+      <aside className={styles.sidebar}>
         <div className={styles.sidebarBrand}>
           <Link className={styles.brandName} href="/dashboard">
             <span className={styles.brandAccent}>Kai</span>Edu{" "}
@@ -90,15 +82,7 @@ export function DashboardShell({ profile, isAdmin, children }: DashboardShellPro
             <button
               type="button"
               className={styles.iconButton}
-              aria-label="Abrir menú"
-              onClick={() => setSidebarOpen(true)}
-            >
-              <IconMenu />
-            </button>
-            <button
-              type="button"
-              className={`${styles.iconButton} ${styles.iconButtonDesktop}`}
-              aria-label="Contraer menú"
+              aria-label="Contraer menú lateral"
               onClick={toggleCollapsed}
             >
               <IconMenu />
@@ -139,7 +123,9 @@ export function DashboardShell({ profile, isAdmin, children }: DashboardShellPro
           </div>
         </header>
 
-        <main className={styles.content}>{children}</main>
+        <main className={styles.content}>
+          <div className={styles.contentInner}>{children}</div>
+        </main>
 
         <footer className={styles.footer}>
           KaiEdu · Desarrollado por Wilminton Díaz · {new Date().getFullYear()}

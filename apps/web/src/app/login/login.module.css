@@ -84,15 +84,6 @@
 
 .authMobileLogo {
   display: none;
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--app-text);
-}
-
-.authMobileLogo span {
-  color: var(--kai-primary);
 }
 
 .authTitle {
@@ -211,18 +202,4 @@
   color: var(--kai-primary);
   text-decoration: underline;
   text-underline-offset: 3px;
-}
-
-@media (max-width: 991.98px) {
-  .authBrand {
-    display: none;
-  }
-
-  .authPanel {
-    max-width: 100%;
-  }
-
-  .authMobileLogo {
-    display: block;
-  }
 }

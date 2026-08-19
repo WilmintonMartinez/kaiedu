@@ -15,12 +15,11 @@
   width: 100%;
   max-width: var(--kai-content-wide);
   margin: 0 auto;
-  padding: max(1rem, env(safe-area-inset-top, 0px)) max(1.25rem, var(--kai-safe-right))
-    1rem max(1.25rem, var(--kai-safe-left));
+  padding: 1.25rem 2rem;
 }
 
 .logo {
-  font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem);
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--app-text);
@@ -57,8 +56,7 @@
 .heroSection {
   background: var(--app-auth-gradient);
   color: #fff;
-  padding: 3rem max(1.25rem, var(--kai-safe-right)) 4rem
-    max(1.25rem, var(--kai-safe-left));
+  padding: 4rem 2rem 5rem;
 }
 
 .heroInner {
@@ -80,7 +78,7 @@
 }
 
 .heroSection h1 {
-  font-size: clamp(2rem, 1.4rem + 2.5vw, 3rem);
+  font-size: 3rem;
   font-weight: 700;
   line-height: 1.12;
   letter-spacing: -0.03em;
@@ -89,7 +87,7 @@
 }
 
 .lead {
-  font-size: clamp(1rem, 0.95rem + 0.35vw, 1.125rem);
+  font-size: 1.125rem;
   line-height: 1.65;
   opacity: 0.92;
   max-width: 640px;
@@ -129,8 +127,7 @@
   width: 100%;
   max-width: var(--kai-content-wide);
   margin: 0 auto;
-  padding: 2rem max(1.25rem, var(--kai-safe-right)) 2.5rem
-    max(1.25rem, var(--kai-safe-left));
+  padding: 2.5rem 2rem 3rem;
 }
 
 .sectionTitle {
@@ -144,8 +141,8 @@
 
 .features {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
 }
 
 .feature {
@@ -192,17 +189,10 @@
   width: 100%;
   max-width: var(--kai-content-wide);
   margin: 0 auto;
-  padding: 1.25rem max(1.25rem, var(--kai-safe-right))
-    max(1.25rem, calc(1rem + var(--kai-safe-bottom))) max(1.25rem, var(--kai-safe-left));
+  padding: 1.25rem 2rem;
   text-align: center;
   font-size: 0.8125rem;
   color: var(--app-text-muted);
   border-top: 1px solid var(--app-border);
   background: var(--app-surface);
-}
-
-@media (min-width: 768px) {
-  .features {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
 }

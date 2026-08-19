@@ -18,16 +18,6 @@
 
 .overlay {
   display: none;
-  position: fixed;
-  inset: 0;
-  border: none;
-  background: var(--app-overlay);
-  z-index: 1035;
-  cursor: pointer;
-}
-
-.overlayShow {
-  display: block;
 }
 
 .sidebar {
@@ -42,12 +32,7 @@
   left: 0;
   bottom: 0;
   z-index: 1040;
-  transition: transform 0.25s ease, width 0.25s ease;
-}
-
-.sidebarOpen {
-  transform: translateX(0);
-  box-shadow: var(--app-shadow-hover);
+  transition: width 0.25s ease;
 }
 
 .sidebarBrand {
@@ -311,14 +296,14 @@
 .header {
   background: var(--app-surface);
   border-bottom: 1px solid var(--app-border);
-  padding: 0.875rem 1.5rem;
+  padding: 0.875rem 2rem;
   position: sticky;
   top: 0;
   z-index: 1030;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .headerLeft,
@@ -329,8 +314,8 @@
 }
 
 .headerDate {
-  display: none;
-  font-size: 0.8125rem;
+  display: inline;
+  font-size: 0.875rem;
   color: var(--app-text-muted);
   text-transform: capitalize;
 }
@@ -350,10 +335,6 @@
 
 .iconButton:hover {
   background: var(--app-nav-hover);
-}
-
-.iconButtonDesktop {
-  display: none;
 }
 
 .userMenu {
@@ -391,10 +372,10 @@
 }
 
 .userName {
-  display: none;
+  display: inline;
   font-size: 0.875rem;
   font-weight: 600;
-  max-width: 140px;
+  max-width: 220px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -453,11 +434,17 @@
 
 .content {
   flex: 1;
-  padding: 1.5rem;
+  padding: 2rem;
+}
+
+.contentInner {
+  width: 100%;
+  max-width: var(--kai-content-wide);
+  margin: 0 auto;
 }
 
 .footer {
-  padding: 1rem 1.5rem;
+  padding: 1rem 2rem;
   border-top: 1px solid var(--app-border);
   background: var(--app-surface);
   font-size: 0.8125rem;
@@ -537,9 +524,9 @@
 
 .statGrid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
 }
 
 .statCard {
@@ -632,8 +619,8 @@
 
 .cardGrid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
 }
 
 .moduleLink {
@@ -691,124 +678,71 @@
   color: var(--kai-primary);
 }
 
-@media (min-width: 640px) {
-  .statGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.wrapperCollapsed .sidebarBrand {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  text-align: center;
 }
 
-@media (min-width: 768px) {
-  .headerDate {
-    display: inline;
-  }
-
-  .userName {
-    display: inline;
-  }
-
-  .cardGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.wrapperCollapsed .brandSub,
+.wrapperCollapsed .brandVersion,
+.wrapperCollapsed .navSection,
+.wrapperCollapsed .navDivider,
+.wrapperCollapsed .navLabel,
+.wrapperCollapsed .navFactoryLabel,
+.wrapperCollapsed .navFactoryChevron,
+.wrapperCollapsed .navFactoryLinkText,
+.wrapperCollapsed .navFactoryBullet,
+.wrapperCollapsed .sidebarFooter {
+  display: none;
 }
 
-@media (min-width: 992px) {
-  .iconButtonDesktop {
-    display: inline-flex;
-  }
-
-  .overlay,
-  .overlayShow {
-    display: none !important;
-  }
-
-  .sidebar {
-    transform: translateX(0) !important;
-  }
-
-  .statGrid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .wrapperCollapsed .sidebarBrand {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    text-align: center;
-  }
-
-  .wrapperCollapsed .navLink {
-    justify-content: center;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
-  .wrapperCollapsed .brandSub,
-  .wrapperCollapsed .brandVersion,
-  .wrapperCollapsed .navSection,
-  .wrapperCollapsed .navDivider,
-  .wrapperCollapsed .navLabel,
-  .wrapperCollapsed .navFactoryLabel,
-  .wrapperCollapsed .navFactoryChevron,
-  .wrapperCollapsed .navFactoryLinkText,
-  .wrapperCollapsed .navFactoryBullet,
-  .wrapperCollapsed .sidebarFooter {
-    display: none;
-  }
-
-  .wrapperCollapsed .navFactoryToggle {
-    justify-content: center;
-    padding: 0.55rem;
-  }
-
-  .wrapperCollapsed .navFactoryLink {
-    justify-content: center;
-    padding: 0.5rem;
-  }
-
-  .wrapperCollapsed .navFactoryLinkIcon {
-    display: block;
-  }
-
-  .wrapperCollapsed .navLink[data-tooltip]::after,
-  .wrapperCollapsed .navFactoryToggle[data-tooltip]::after,
-  .wrapperCollapsed .navFactoryLink[data-tooltip]::after,
-  .wrapperCollapsed .navStandalone[data-tooltip]::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    left: calc(100% + 0.5rem);
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--app-text);
-    color: var(--app-surface);
-    padding: 0.3rem 0.6rem;
-    border-radius: 0.4rem;
-    font-size: 0.78rem;
-    font-weight: 500;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.15s ease;
-    z-index: 1050;
-    box-shadow: var(--app-shadow-hover);
-  }
-
-  .wrapperCollapsed .navLink[data-tooltip]:hover::after,
-  .wrapperCollapsed .navFactoryToggle[data-tooltip]:hover::after,
-  .wrapperCollapsed .navFactoryLink[data-tooltip]:hover::after,
-  .wrapperCollapsed .navStandalone[data-tooltip]:hover::after {
-    opacity: 1;
-  }
+.wrapperCollapsed .navFactoryToggle {
+  justify-content: center;
+  padding: 0.55rem;
 }
 
-@media (max-width: 991.98px) {
-  .sidebar {
-    transform: translateX(-100%);
-  }
+.wrapperCollapsed .navFactoryLink {
+  justify-content: center;
+  padding: 0.5rem;
+}
 
-  .main {
-    margin-left: 0;
-  }
+.wrapperCollapsed .navFactoryLinkIcon {
+  display: block;
+}
 
-  .wrapperCollapsed .main {
-    margin-left: 0;
-  }
+.wrapperCollapsed .navLink {
+  justify-content: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.wrapperCollapsed .navLink[data-tooltip]::after,
+.wrapperCollapsed .navFactoryToggle[data-tooltip]::after,
+.wrapperCollapsed .navFactoryLink[data-tooltip]::after,
+.wrapperCollapsed .navStandalone[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: calc(100% + 0.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--app-text);
+  color: var(--app-surface);
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 1050;
+  box-shadow: var(--app-shadow-hover);
+}
+
+.wrapperCollapsed .navLink[data-tooltip]:hover::after,
+.wrapperCollapsed .navFactoryToggle[data-tooltip]:hover::after,
+.wrapperCollapsed .navFactoryLink[data-tooltip]:hover::after,
+.wrapperCollapsed .navStandalone[data-tooltip]:hover::after {
+  opacity: 1;
 }
