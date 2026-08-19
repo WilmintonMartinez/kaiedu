@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -5,6 +6,9 @@ export default function Home() {
     <div className={styles.page}>
       <header className={styles.header}>
         <span className={styles.logo}>KaiEdu</span>
+        <Link className={styles.loginLink} href="/login">
+          Iniciar sesión
+        </Link>
       </header>
 
       <main className={styles.main}>

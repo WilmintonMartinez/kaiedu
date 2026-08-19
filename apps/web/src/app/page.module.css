@@ -16,11 +16,28 @@
 }
 
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   width: 100%;
   max-width: var(--kai-content-wide);
   margin: 0 auto;
   padding: max(1rem, env(safe-area-inset-top, 0px)) max(1.25rem, var(--kai-safe-right))
     1rem max(1.25rem, var(--kai-safe-left));
+}
+
+.loginLink {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--kai-primary);
+  text-decoration: none;
 }
 
 .logo {
@@ -180,5 +197,9 @@
     --kai-border: #334155;
     --kai-surface: #1e293b;
     background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%);
+  }
+
+  .loginLink {
+    color: #0f172a;
   }
 }
