@@ -11,6 +11,7 @@ import {
 } from "@/lib/types/profile";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageHeader } from "../page-header";
 import shell from "../shell.module.css";
 import styles from "./usuarios.module.css";
 
@@ -33,15 +34,20 @@ export default async function UsuariosPage() {
 
   return (
     <>
-      <div className={shell.pageHeader}>
-        <div>
-          <h1>Usuarios del sistema</h1>
-          <p>Registra y administra quién puede usar KaiEdu.</p>
-        </div>
-        <Link className={shell.primaryButton} href="/dashboard/usuarios/nuevo">
-          Nuevo usuario
-        </Link>
-      </div>
+      <PageHeader
+        pretitle="Administración"
+        title="Usuarios del sistema"
+        subtitle="Registra y administra quién puede usar KaiEdu."
+        breadcrumb={[
+          { label: "Panel", href: "/dashboard" },
+          { label: "Usuarios" },
+        ]}
+        action={
+          <Link className={shell.primaryButton} href="/dashboard/usuarios/nuevo">
+            Nuevo usuario
+          </Link>
+        }
+      />
 
       {error ? (
         <section className={shell.card}>
@@ -53,8 +59,11 @@ export default async function UsuariosPage() {
       ) : null}
 
       <section className={shell.card}>
+        <div className={shell.cardHeader}>Listado de usuarios</div>
         {users.length === 0 ? (
-          <p className={styles.empty}>Aún no hay usuarios registrados.</p>
+          <div className={shell.cardBody}>
+            <p className={styles.empty}>Aún no hay usuarios registrados.</p>
+          </div>
         ) : (
           <div className={styles.tableWrap}>
             <table className={styles.table}>
@@ -89,7 +98,7 @@ export default async function UsuariosPage() {
                             </option>
                           ))}
                         </select>
-                        <button className={styles.toggleButton} type="submit">
+                        <button className={`${styles.tableActionBtn} ${styles.tableActionEdit}`} type="submit">
                           Guardar
                         </button>
                       </form>
@@ -111,7 +120,10 @@ export default async function UsuariosPage() {
                           type="hidden"
                           value={String(!user.is_active)}
                         />
-                        <button className={styles.toggleButton} type="submit">
+                        <button
+                          className={`${styles.tableActionBtn} ${user.is_active ? styles.tableActionBlock : styles.tableActionUnblock}`}
+                          type="submit"
+                        >
                           {user.is_active ? "Desactivar" : "Activar"}
                         </button>
                       </form>

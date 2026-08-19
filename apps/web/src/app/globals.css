@@ -1,36 +1,87 @@
-:root {
+:root,
+[data-theme="light"] {
   color-scheme: light;
 
-  --background: #f4f7fb;
-  --foreground: #0f172a;
+  --font-app: "Plus Jakarta Sans", system-ui, sans-serif;
 
-  /* KaiEdu — tema claro institucional */
-  --kai-primary: #1a4d8c;
-  --kai-primary-hover: #153d6f;
-  --kai-primary-soft: #e8f0fa;
-  --kai-text: #0f172a;
-  --kai-muted: #64748b;
-  --kai-border: #dbe3ef;
-  --kai-surface: #ffffff;
-  --kai-surface-muted: #f8fafc;
-  --kai-danger: #b91c1c;
-  --kai-success: #15803d;
-  --kai-warning: #b45309;
+  --kai-primary: #0d6efd;
+  --kai-primary-hover: #0b5ed7;
+  --kai-primary-soft: rgba(13, 110, 253, 0.08);
+  --kai-danger: #ef4444;
+  --kai-success: #10b981;
+  --kai-warning: #f59e0b;
+  --kai-info: #06b6d4;
 
-  --kai-bp-sm: 480px;
-  --kai-bp-md: 768px;
-  --kai-bp-lg: 1024px;
-  --kai-bp-xl: 1280px;
+  --app-bg: #f1f5f9;
+  --app-surface: #ffffff;
+  --app-surface-2: #f8fafc;
+  --app-border: #e2e8f0;
+  --app-border-light: #f1f5f9;
+  --app-text: #1e293b;
+  --app-text-muted: #64748b;
+  --app-text-subtle: #94a3b8;
+  --app-nav-hover: #f1f5f9;
+  --app-nav-active-bg: rgba(13, 110, 253, 0.08);
+  --app-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --app-shadow-hover: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --app-overlay: rgba(0, 0, 0, 0.4);
+  --app-auth-gradient: linear-gradient(160deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+  --app-radius: 0.625rem;
+  --app-radius-lg: 0.875rem;
+  --app-sidebar-width: 260px;
+  --app-sidebar-collapsed: 76px;
+
+  --background: var(--app-bg);
+  --foreground: var(--app-text);
+  --kai-text: var(--app-text);
+  --kai-muted: var(--app-text-muted);
+  --kai-border: var(--app-border);
+  --kai-surface: var(--app-surface);
+  --kai-surface-muted: var(--app-surface-2);
+  --kai-shadow-sm: var(--app-shadow);
+  --kai-radius: var(--app-radius-lg);
 
   --kai-content-narrow: 720px;
-  --kai-content-wide: 1200px;
-
+  --kai-content-wide: 1280px;
   --kai-safe-left: env(safe-area-inset-left, 0px);
   --kai-safe-right: env(safe-area-inset-right, 0px);
   --kai-safe-bottom: env(safe-area-inset-bottom, 0px);
+}
 
-  --kai-shadow-sm: 0 1px 2px rgb(15 23 42 / 6%);
-  --kai-radius: 12px;
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --kai-danger: #f87171;
+  --kai-success: #4ade80;
+  --kai-warning: #fbbf24;
+  --kai-info: #22d3ee;
+
+  --kai-primary: #3b82f6;
+  --kai-primary-hover: #60a5fa;
+  --kai-primary-soft: rgba(96, 165, 250, 0.15);
+
+  --app-bg: #0f172a;
+  --app-surface: #1e293b;
+  --app-surface-2: #334155;
+  --app-border: #334155;
+  --app-border-light: #1e293b;
+  --app-text: #f1f5f9;
+  --app-text-muted: #94a3b8;
+  --app-text-subtle: #64748b;
+  --app-nav-hover: #334155;
+  --app-nav-active-bg: rgba(96, 165, 250, 0.15);
+  --app-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --app-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --app-overlay: rgba(0, 0, 0, 0.6);
+  --app-auth-gradient: linear-gradient(160deg, #0f172a 0%, #1e3a5f 50%, #1e40af 100%);
+
+  --background: var(--app-bg);
+  --foreground: var(--app-text);
+  --kai-text: var(--app-text);
+  --kai-muted: var(--app-text-muted);
+  --kai-border: var(--app-border);
+  --kai-surface: var(--app-surface);
+  --kai-surface-muted: var(--app-surface-2);
 }
 
 html {
@@ -51,13 +102,14 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  color: var(--app-text);
+  background: var(--app-bg);
+  font-family: var(--font-app);
   font-size: clamp(0.9375rem, 0.875rem + 0.25vw, 1rem);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 * {

@@ -1,59 +1,111 @@
-.page {
+.authWrapper {
   display: flex;
   min-height: 100vh;
   min-height: 100dvh;
-  flex-direction: column;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  background: linear-gradient(180deg, var(--kai-primary-soft) 0%, var(--background) 50%);
-  color: var(--kai-text);
-}
-
-.header {
   width: 100%;
-  max-width: var(--kai-content-wide);
-  margin: 0 auto;
-  padding: max(1rem, env(safe-area-inset-top, 0px)) max(1.25rem, var(--kai-safe-right))
-    1rem max(1.25rem, var(--kai-safe-left));
 }
 
-.logo {
-  font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem);
+.authBrand {
+  flex: 1;
+  background: var(--app-auth-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  color: #fff;
+}
+
+.authBrandInner {
+  max-width: 380px;
+}
+
+.authBrand h1 {
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: var(--kai-primary);
-  text-decoration: none;
+  margin-bottom: 1rem;
 }
 
-.main {
+.authBrandAccent {
+  font-weight: 300;
+}
+
+.authBrand p {
+  opacity: 0.9;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  opacity: 0.92;
+}
+
+.featureIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.authPanel {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem max(1.25rem, var(--kai-safe-right)) 2rem
-    max(1.25rem, var(--kai-safe-left));
+  padding: 2rem;
+  background: var(--app-bg);
+  max-width: 520px;
+  position: relative;
 }
 
-.card {
+.authPanelActions {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.authBox {
   width: 100%;
-  max-width: 420px;
-  padding: 1.75rem;
-  border-radius: var(--kai-radius);
-  background: var(--kai-surface);
-  border: 1px solid var(--kai-border);
-  box-shadow: var(--kai-shadow-sm);
+  max-width: 400px;
 }
 
-.card h1 {
-  font-size: clamp(1.375rem, 1.1rem + 1vw, 1.625rem);
+.authMobileLogo {
+  display: none;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
+  color: var(--app-text);
+}
+
+.authMobileLogo span {
+  color: var(--kai-primary);
+}
+
+.authTitle {
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  color: var(--app-text);
 }
 
 .subtitle {
   font-size: 0.9375rem;
   line-height: 1.5;
-  color: var(--kai-muted);
+  color: var(--app-text-muted);
   margin-bottom: 1.5rem;
 }
 
@@ -63,32 +115,49 @@
   gap: 1rem;
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.375rem;
-}
-
 .field label {
+  display: block;
   font-size: 0.875rem;
   font-weight: 600;
+  margin-bottom: 0.375rem;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  overflow: hidden;
+  background: var(--app-surface);
+}
+
+.inputPrefix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.875rem;
+  background: var(--app-surface-2);
+  color: var(--app-text-muted);
+  border-right: 1px solid var(--app-border);
 }
 
 .field input {
   width: 100%;
   min-height: 44px;
   padding: 0.625rem 0.875rem;
-  border-radius: 10px;
-  border: 1px solid var(--kai-border);
-  background: var(--kai-surface);
-  color: var(--kai-text);
+  border: none;
+  background: transparent;
+  color: var(--app-text);
   font: inherit;
 }
 
 .field input:focus {
-  outline: 2px solid color-mix(in srgb, var(--kai-primary) 35%, transparent);
-  outline-offset: 1px;
+  outline: none;
+}
+
+.inputGroup:focus-within {
   border-color: var(--kai-primary);
+  box-shadow: 0 0 0 0.2rem rgba(26, 77, 140, 0.15);
 }
 
 .submit {
@@ -96,12 +165,13 @@
   margin-top: 0.25rem;
   padding: 0.75rem 1rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 999px;
   background: var(--kai-primary);
   color: #fff;
   font: inherit;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: var(--app-shadow);
 }
 
 .submit:hover:not(:disabled) {
@@ -115,7 +185,7 @@
 
 .error {
   padding: 0.75rem 0.875rem;
-  border-radius: 10px;
+  border-radius: var(--app-radius);
   font-size: 0.875rem;
   line-height: 1.45;
   color: var(--kai-danger);
@@ -125,7 +195,7 @@
 
 .warning {
   padding: 0.75rem 0.875rem;
-  border-radius: 10px;
+  border-radius: var(--app-radius);
   font-size: 0.875rem;
   line-height: 1.45;
   color: var(--kai-warning);
@@ -141,4 +211,18 @@
   color: var(--kai-primary);
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+@media (max-width: 991.98px) {
+  .authBrand {
+    display: none;
+  }
+
+  .authPanel {
+    max-width: 100%;
+  }
+
+  .authMobileLogo {
+    display: block;
+  }
 }

@@ -16,11 +16,16 @@ export const USER_ROLE_LABELS: Record<UserRole, string> = {
   invitado: "Invitado",
 };
 
+export type ThemeMode = "light" | "dark";
+
+export const USER_THEME_MODES = ["light", "dark"] as const;
+
 export type Profile = {
   id: string;
   email: string;
   full_name: string;
   role: UserRole;
+  theme: ThemeMode;
   is_active: boolean;
   created_at: string;
   updated_at: string;

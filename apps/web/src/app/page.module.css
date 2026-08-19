@@ -3,9 +3,8 @@
   min-height: 100vh;
   min-height: 100dvh;
   flex-direction: column;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  background: linear-gradient(180deg, var(--kai-primary-soft) 0%, var(--background) 45%);
-  color: var(--kai-text);
+  background: var(--app-bg);
+  color: var(--app-text);
 }
 
 .header {
@@ -24,101 +23,169 @@
   font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem);
   font-weight: 700;
   letter-spacing: -0.03em;
+  color: var(--app-text);
+}
+
+.logoAccent {
   color: var(--kai-primary);
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
 }
 
 .loginLink {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
   font-size: 0.875rem;
   font-weight: 600;
   color: #fff;
   background: var(--kai-primary);
   text-decoration: none;
+  box-shadow: var(--app-shadow);
 }
 
 .loginLink:hover {
   background: var(--kai-primary-hover);
 }
 
-.main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  max-width: var(--kai-content-wide);
-  margin: 0 auto;
-  padding: 1.5rem max(1.25rem, var(--kai-safe-right)) 2rem
+.heroSection {
+  background: var(--app-auth-gradient);
+  color: #fff;
+  padding: 3rem max(1.25rem, var(--kai-safe-right)) 4rem
     max(1.25rem, var(--kai-safe-left));
 }
 
-.hero {
+.heroInner {
   width: 100%;
-  max-width: var(--kai-content-narrow);
+  max-width: var(--kai-content-wide);
+  margin: 0 auto;
 }
 
 .badge {
   display: inline-block;
-  width: fit-content;
-  max-width: 100%;
   margin-bottom: 1rem;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--kai-primary);
-  background: var(--kai-surface);
-  border: 1px solid var(--kai-border);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.hero h1 {
-  font-size: clamp(1.75rem, 1.2rem + 2.5vw, 2.75rem);
+.heroSection h1 {
+  font-size: clamp(2rem, 1.4rem + 2.5vw, 3rem);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.12;
   letter-spacing: -0.03em;
   margin-bottom: 1rem;
-  text-wrap: balance;
+  max-width: 720px;
 }
 
 .lead {
   font-size: clamp(1rem, 0.95rem + 0.35vw, 1.125rem);
   line-height: 1.65;
-  color: var(--kai-muted);
+  opacity: 0.92;
+  max-width: 640px;
   margin-bottom: 2rem;
-  text-wrap: pretty;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.ctaPrimary,
+.ctaSecondary {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.625rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ctaPrimary {
+  background: #fff;
+  color: var(--kai-primary);
+}
+
+.ctaSecondary {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--kai-content-wide);
+  margin: 0 auto;
+  padding: 2rem max(1.25rem, var(--kai-safe-right)) 2.5rem
+    max(1.25rem, var(--kai-safe-left));
+}
+
+.sectionTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--app-text-muted);
+  margin-bottom: 1rem;
 }
 
 .features {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.875rem;
-  width: 100%;
+  gap: 1rem;
 }
 
 .feature {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  padding: 1rem 1.25rem;
-  border-radius: var(--kai-radius);
-  background: var(--kai-surface);
-  border: 1px solid var(--kai-border);
-  box-shadow: var(--kai-shadow-sm);
+  gap: 0.35rem;
+  padding: 1.25rem;
+  border-radius: var(--app-radius-lg);
+  background: var(--app-surface);
+  border: 1px solid var(--app-border-light);
+  box-shadow: var(--app-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--app-shadow-hover);
+}
+
+.featureIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(26, 77, 140, 0.1);
+  color: var(--kai-primary);
+  margin-bottom: 0.35rem;
 }
 
 .feature strong {
-  font-size: 0.9375rem;
-  color: var(--kai-primary);
+  font-size: 1rem;
+  color: var(--app-text);
 }
 
 .feature span {
   font-size: 0.875rem;
-  line-height: 1.5;
-  color: var(--kai-muted);
+  line-height: 1.55;
+  color: var(--app-text-muted);
 }
 
 .footer {
@@ -129,56 +196,13 @@
     max(1.25rem, calc(1rem + var(--kai-safe-bottom))) max(1.25rem, var(--kai-safe-left));
   text-align: center;
   font-size: 0.8125rem;
-  line-height: 1.5;
-  color: var(--kai-muted);
-  border-top: 1px solid var(--kai-border);
-  background: var(--kai-surface);
-}
-
-.footer p {
-  text-wrap: balance;
-}
-
-@media (min-width: 480px) {
-  .features {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .feature:last-child {
-    grid-column: 1 / -1;
-  }
+  color: var(--app-text-muted);
+  border-top: 1px solid var(--app-border);
+  background: var(--app-surface);
 }
 
 @media (min-width: 768px) {
-  .header {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    padding-left: max(2rem, var(--kai-safe-left));
-    padding-right: max(2rem, var(--kai-safe-right));
-  }
-
-  .main {
-    padding: 2.5rem max(2rem, var(--kai-safe-right)) 3rem
-      max(2rem, var(--kai-safe-left));
-  }
-
   .features {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .feature:last-child {
-    grid-column: auto;
-  }
-
-  .lead {
-    margin-bottom: 2.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .main {
-    padding-top: 3rem;
-    padding-bottom: 4rem;
   }
 }

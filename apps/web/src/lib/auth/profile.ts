@@ -28,7 +28,10 @@ export const getCurrentUserProfile = cache(async (): Promise<Profile | null> => 
     return null;
   }
 
-  return data as Profile;
+  return {
+    ...(data as Profile),
+    theme: data.theme === "dark" ? "dark" : "light",
+  };
 });
 
 export async function requireAuthProfile(): Promise<Profile> {
