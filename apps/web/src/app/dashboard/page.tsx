@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { requireAuthProfile } from "@/lib/auth/profile";
+import { getCurrentUserProfile } from "@/lib/auth/profile";
 import { USER_ROLE_LABELS } from "@/lib/types/profile";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import shell from "./shell.module.css";
 
 export const metadata: Metadata = {
@@ -12,7 +13,11 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
-  const profile = await requireAuthProfile();
+  const profile = await getCurrentUserProfile();
+
+  if (!profile?.is_active) {
+    redirect("/login");
+  }
   const isAdmin = profile.role === "administrador";
 
   return (

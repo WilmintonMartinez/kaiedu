@@ -1,9 +1,12 @@
 import { requireAuthProfile } from "@/lib/auth/profile";
 import { USER_ROLE_LABELS } from "@/lib/types/profile";
 import Link from "next/link";
+import { Suspense } from "react";
 import { DashboardNav } from "./dashboard-nav";
 import { LogoutButton } from "./logout-button";
 import styles from "./shell.module.css";
+
+export const dynamic = "force-dynamic";
 
 export default async function DashboardLayout({
   children,
@@ -28,7 +31,9 @@ export default async function DashboardLayout({
             </p>
           </div>
 
-          <DashboardNav isAdmin={isAdmin} />
+          <Suspense fallback={<div className={styles.nav} aria-hidden />}>
+            <DashboardNav isAdmin={isAdmin} />
+          </Suspense>
           <LogoutButton />
         </div>
       </aside>
@@ -40,7 +45,9 @@ export default async function DashboardLayout({
         </header>
 
         <div className={styles.mobileNav}>
-          <DashboardNav isAdmin={isAdmin} horizontal />
+          <Suspense fallback={<div className={styles.navHorizontal} aria-hidden />}>
+            <DashboardNav isAdmin={isAdmin} horizontal />
+          </Suspense>
         </div>
 
         <main className={styles.main}>{children}</main>

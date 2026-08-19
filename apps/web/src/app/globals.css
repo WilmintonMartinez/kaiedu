@@ -50,6 +50,7 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  width: 100%;
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-geist-sans), system-ui, sans-serif;

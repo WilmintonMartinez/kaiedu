@@ -5,11 +5,17 @@ import Link from "next/link";
 import { useActionState } from "react";
 import styles from "./login.module.css";
 
-export function LoginForm() {
+type LoginFormProps = {
+  initialError?: string;
+};
+
+export function LoginForm({ initialError }: LoginFormProps) {
   const [state, formAction, pending] = useActionState<LoginState | null, FormData>(
     login,
     null,
   );
+
+  const errorMessage = state?.error ?? initialError;
 
   return (
     <div className={styles.card}>
@@ -43,9 +49,9 @@ export function LoginForm() {
           />
         </div>
 
-        {state?.error ? (
+        {errorMessage ? (
           <p className={styles.error} role="alert">
-            {state.error}
+            {errorMessage}
           </p>
         ) : null}
 

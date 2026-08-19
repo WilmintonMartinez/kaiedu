@@ -1,8 +1,9 @@
 import { createClient } from "@/lib/supabase/server";
 import type { Profile } from "@/lib/types/profile";
+import { cache } from "react";
 import { redirect } from "next/navigation";
 
-export async function getCurrentUserProfile(): Promise<Profile | null> {
+export const getCurrentUserProfile = cache(async (): Promise<Profile | null> => {
   const supabase = await createClient();
   const {
     data: { user },
@@ -18,18 +19,32 @@ export async function getCurrentUserProfile(): Promise<Profile | null> {
     .eq("id", user.id)
     .maybeSingle();
 
-  if (error || !data) {
+  if (error) {
+    console.error("[KaiEdu] Error al leer perfil:", error.message, error.code);
+    return null;
+  }
+
+  if (!data) {
     return null;
   }
 
   return data as Profile;
-}
+});
 
 export async function requireAuthProfile(): Promise<Profile> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
   const profile = await getCurrentUserProfile();
 
   if (!profile) {
-    redirect("/login");
+    redirect("/login?error=sin_perfil");
   }
 
   if (!profile.is_active) {

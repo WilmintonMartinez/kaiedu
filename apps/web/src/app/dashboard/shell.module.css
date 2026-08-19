@@ -1,5 +1,7 @@
 .shell {
   display: flex;
+  width: 100%;
+  flex: 1;
   min-height: 100vh;
   min-height: 100dvh;
   background: var(--background);
@@ -192,6 +194,20 @@
   overflow-x: auto;
   border-bottom: 1px solid var(--kai-border);
   background: var(--kai-surface);
+}
+
+.loadingWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  padding: 2rem 1rem;
+}
+
+.loadingText {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--kai-primary);
 }
 
 @media (min-width: 768px) {
